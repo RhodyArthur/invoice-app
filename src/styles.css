@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+    /* colors */
+    --purple: #7C5DFA;
+    --soft-purple: #9277FF;
+    --dark-blue: #1E2139;
+    --blue-black: #252945;
+    --light-purple: #DFE3FA;
+    --dark-gray: #888EB0;
+    --light-gray-blue: #7E88C3;
+    --black: #0C0E16;
+    --black-50: #141625;
+    --orange: #EC5757;
+    --light-orange: #FF9797;
+    --off-white: #F8F8F8;
+    --teal: #33D69F;
+    --orange-yellow: #FF8F00;
+    --white: #FFFFFF;
+
+
+    /* font-size */
+    --font-size-xxl: 2rem;
+    --font-size-xl: 1.25rem;
+    --font-size-lg: 1rem;
+    --font-size-md: 0.75rem;
+    --font-size-sm: 0.6875rem;
+
+    /* font-weight */
+    --font-weight-bold: 700;
+
+    /* line-height */
+    --line-height-xl: 2.25;
+    --line-height-lg: 1.5;
+    --line-height-md: 1.375;
+    --line-height-sm: 0.9375;
+    --line-height-xs: 0.1125;
+
+    /* letter-spacing */
+    --letter-spacing-xl: 0.0625rem;
+    --letter-spacing-lg: -0.005rem;
+    --letter-spacing-md: -0.039rem;
+    --letter-spacing-sm: -0.0157rem;
+    --letter-spacing-xs: -0.0143rem;
+}
+
+/* light mode */
+.light-mode {
+    --main-bg-color: var(--off-white);
+    --text-color: var(--black);
+    --invoice-bg: var(--white);
+}
+
+.dark-mode {
+    --main-bg-color: var(--black-50);
+    --text-color: var(--white);
+    --invoice-bg: var(--black-50);
+}
