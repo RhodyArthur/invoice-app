@@ -6,16 +6,42 @@
     height: 72px;
 }
 
+.icon-container {
+    width: 72px;
+    height: 72px;
+    background-color: var(--purple);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0 20px 20px 0px;
+}
+
+.inner {
+    position: absolute;
+    top: 50%;
+    width: 72px;
+    height: 36px;
+    border-radius: 20px 0;
+    background-color: var(--soft-purple);
+}
+
+.icon-container svg {
+    z-index: 1;
+}
+
+
 .settings {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-right: 1rem;
 }
 
 .bar {
-    width: 5px;
-    height: 100%;
-    color: white;
+    height: 72px;
+    border-right: 1px solid var(--bar);
 }
 
 .avatar {
@@ -31,16 +57,33 @@ MEDIA QUERIES
 
 @media screen and (min-width: 1024px) {
     .header-container {
-        width: 6.43vw;
+        width: 10.06vw;
         height: 100vh;
         flex-direction: column;
     }
 
+    .icon-container, 
+    .inner {
+        width: 103px;
+        height: 103px;
+    }
+
+    
+
     .settings {
         flex-direction: column;
     }
+
+
     .bar {
-        width: 6.43vw;
-        height: 1px;
+        border-bottom: 1px solid var(--bar);
+        width: 10.06vw;
+        height: 0;
+    }
+
+    .avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 1rem;
     }
 }
