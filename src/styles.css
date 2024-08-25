@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 *, ::before, ::after {
   box-sizing: border-box;
   margin: 0;
@@ -24,6 +26,7 @@
     --white: #FFFFFF;
     --header-bg: #373B53;
     --bar: #494E6E;
+    --btn-bg: #F9FAFE;
 
 
     /* font-size */
@@ -55,16 +58,17 @@
 .light-mode {
     --main-bg-color: var(--off-white);
     --text-color: var(--black);
-    --invoice-bg: var(--white);
+    --modal-bg: var(--white);
 }
 
 .dark-mode {
     --main-bg-color: var(--black-50);
     --text-color: var(--white);
-    --invoice-bg: var(--black-50);
+    --modal-bg: var(--dark-blue);
 }
 
 body {
     background-color: var(--main-bg-color);
     color: var(--text-color);
+    font-family: "League Spartan", sans-serif;
 }
