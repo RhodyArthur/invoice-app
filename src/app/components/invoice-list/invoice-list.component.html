@@ -1,1 +1,5 @@
-<p>invoice-list works!</p>
+
+
+@for (invoice of (invoices$ | async); track $index) {
+    <div>{{invoice.description}}</div>
+}

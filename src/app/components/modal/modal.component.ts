@@ -15,11 +15,5 @@ export class ModalComponent implements OnInit{
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getInvoiceData()
-    .subscribe(data => {
-        this.invoiceData = data;
-        console.log(data)
-      }
-    )
   }
 }

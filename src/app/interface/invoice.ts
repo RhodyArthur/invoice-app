@@ -29,3 +29,13 @@ export interface Address {
     postCode: string;
     country: string;
 }
+
+
+export interface InvoiceState{
+    invoice: Invoice[]
+    error: string | null
+}
+export interface AppState {
+    invoice: InvoiceState
+}
+
