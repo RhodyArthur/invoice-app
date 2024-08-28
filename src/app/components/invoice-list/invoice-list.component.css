@@ -80,6 +80,32 @@
     cursor: pointer;
 }
 
+.empty-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.text {
+    font-size: var(--font-size-md);
+    color: var(--dark-gray);
+}
 
 /* 
 =====================
@@ -121,7 +147,8 @@ MEDIA QUERIES
 @media screen and (min-width: 1024px) {
     .list-container {
         max-width: 45.625rem;
-        margin: auto;
+        /* overflow: scroll; */
+        /* margin: auto; */
     }
     
 }

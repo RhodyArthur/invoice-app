@@ -1,0 +1,14 @@
+.main-container {
+    width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    .main-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .invoice {
+        margin: auto;
+    }
+}

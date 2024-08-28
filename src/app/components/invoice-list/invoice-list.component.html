@@ -1,8 +1,16 @@
 <div class="list-container">
     @if((invoices$ | async )?.length === 0) {
-        display empty
+        <div class="empty-container">
+            <div class="image">
+               <img src="../../../assets/illustration-empty.svg" alt="illustration-empty svg">
+            </div>
+            <div class="text-container">
+                <p class="title">There is nothing here</p>
+                <p class="text">Create an invoice by clicking the New button and get started</p>
+            </div>
+        </div>
     }
-    <!-- @else{
+    @else{
     @for (invoice of (invoices$ | async); track $index) {
     <div class="invoice-item">
         <div class="container-0">
@@ -29,5 +37,5 @@
         </div>
     </div>
 }
-} -->
+}
 </div>
