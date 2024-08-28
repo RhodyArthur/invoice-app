@@ -17,10 +17,10 @@ export const initialState: InvoiceState = {
 // create reducer
 export const invoiceReducer = createReducer(
     initialState,
+    
     on(loadInvoice, state => ({...state})),
 
-    on(loadInvoiceSuccess, (state, {invoice}) => ({...state, invoice, error: null})),
+    on(loadInvoiceSuccess, (state, {invoice}) => ({...state, invoice})),
 
     on(loadInvoiceFailure, (state, {error}) => ({...state, error}))
-
 )

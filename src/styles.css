@@ -16,17 +16,19 @@
     --light-purple: #DFE3FA;
     --dark-gray: #888EB0;
     --light-gray-blue: #7E88C3;
+    --light-gray-blue-50: #858BB2;
     --black: #0C0E16;
     --black-50: #141625;
     --orange: #EC5757;
     --light-orange: #FF9797;
-    --off-white: #F8F8F8;
+    --off-white: #F8F8FB;
     --teal: #33D69F;
     --orange-yellow: #FF8F00;
     --white: #FFFFFF;
     --header-bg: #373B53;
     --bar: #494E6E;
     --btn-bg: #F9FAFE;
+    
 
 
     /* font-size */
@@ -59,12 +61,14 @@
     --main-bg-color: var(--off-white);
     --text-color: var(--black);
     --modal-bg: var(--white);
+    --draft: var(--header-bg);
 }
 
 .dark-mode {
     --main-bg-color: var(--black-50);
     --text-color: var(--white);
     --modal-bg: var(--dark-blue);
+    --draft: var(var(--light-purple))
 }
 
 body {

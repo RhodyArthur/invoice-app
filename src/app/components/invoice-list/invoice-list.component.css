@@ -1,0 +1,127 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.invoice-item {
+    border-radius: 8px;
+    background-color: var(--modal-bg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: transparent;
+}
+
+.container-0,
+.container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-1-1 {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.invoice-id {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+.invoice-id span {
+    color: var(--light-gray-blue);
+}
+
+.name,
+.date {
+    font-size: var(--font-size-md);
+    color: var(--light-gray-blue-50);
+}
+
+.amount {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+.status {
+    width: 6.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+
+.paid {
+    color: var(--teal);
+    background-color: rgba(151, 243, 228, 0.1);
+}
+
+.pending {
+    color: var(--orange-yellow);
+    background-color: rgba(255, 143, 0, 0.1);
+}
+
+.draft {
+    color: var(--draft);
+    background-color: rgba(151, 151, 151, 0.1);
+}
+
+.arrow-right {
+    display: none;
+    cursor: pointer;
+}
+
+
+/* 
+=====================
+HOVERING EFFECTS
+===================== */
+.invoice-item:hover {
+    cursor: pointer;
+    border: 1px solid var(--purple);
+}
+
+/* 
+=================
+MEDIA QUERIES
+================= */
+/* tablets */
+@media screen and (min-width: 768px) {
+
+    .list-container {
+        margin: 2rem;
+    }
+
+    .invoice-item,
+    .container-0,
+    .container-1,
+    .container-1-1,
+    .container-1-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3.2rem;
+    }
+    
+    .arrow-right {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .list-container {
+        max-width: 45.625rem;
+        margin: auto;
+    }
+    
+}

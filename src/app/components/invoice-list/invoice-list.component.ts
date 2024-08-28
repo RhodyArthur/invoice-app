@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState, Invoice } from '../../interface/invoice';
 import { select, Store } from '@ngrx/store';
@@ -14,15 +14,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './invoice-list.component.css'
 })
 export class InvoiceListComponent implements OnInit{
-  invoices$: Observable<Invoice[]> = this.store.select(selectAllInvoices);
+  invoices$: Observable<Invoice[]>;
 
   ngOnInit(): void {
     this.store.dispatch(loadInvoice())
 
   }
-
+ 
   constructor(private store: Store<AppState>) {
-    // this.invoice$ = store.pipe(select(selectAllInvoices))
+    this.invoices$ = store.pipe(select(selectAllInvoices))
   }
 
   

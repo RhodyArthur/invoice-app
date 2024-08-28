@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ThemeService {
   isDarkMode: boolean = false;
 
-  constructor() { }
+  constructor() {this.applyDefaultTheme() }
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
@@ -23,5 +23,10 @@ export class ThemeService {
       body.classList.add('light-mode');
       body.classList.remove('dark-mode');
     }
+  }
+
+  private applyDefaultTheme() {
+    this.isDarkMode = false;
+    this.updateTheme();
   }
 }
