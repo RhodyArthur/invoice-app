@@ -34,7 +34,9 @@ export interface Address {
 export interface InvoiceState{
     invoice: Invoice[]
     error: string | null
+    selectedStatus: string | null
 }
+
 export interface AppState {
     invoice: InvoiceState
 }

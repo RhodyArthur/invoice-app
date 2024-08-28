@@ -1,17 +1,15 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { Invoice } from "../interface/invoice";
 import { loadInvoice, loadInvoiceFailure, loadInvoiceSuccess } from "./invoice.actions";
-
 // define the shape
-export interface InvoiceState{
-    invoice: Invoice[]
-    error: string | null
-}
+import { InvoiceState } from "../interface/invoice";
+
 
 // set initial state
 export const initialState: InvoiceState = {
     invoice: [],
-    error: null
+    error: null,
+    selectedStatus: null
 }
 
 // create reducer

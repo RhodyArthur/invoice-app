@@ -1,0 +1,25 @@
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+}
+
+.text span {
+    display: none;
+}
+
+/* 
+=====================
+MEDIA QUERIES
+===================== */
+@media screen and (min-width: 768px) {
+    /* .filter-container {
+        max-width: 118px;
+        width: 100%;
+    } */
+    .text span {
+        display: block;
+    }
+}

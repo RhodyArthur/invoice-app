@@ -1,1 +1,16 @@
-<p>invoice-filter works!</p>
+<div class="filter-container" (click)="displayDropDown()">
+    <p class="text">Filter <span>by status</span></p>
+    <svg width="11" height="7" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1l4.228 4.228L9.456 1" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/>
+    </svg>
+
+    <!-- drop-down menu -->
+     @if(showDropDown) {
+     <div class="dropdown-menu">
+        <div class="dropdown-item">
+            <input type="checkbox" id="paid">
+            <label for="paid">Paid</label>
+        </div>
+     </div>
+    }
+</div>

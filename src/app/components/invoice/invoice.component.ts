@@ -11,5 +11,8 @@ import { InvoiceNewButtonComponent } from "../invoice-new-button/invoice-new-but
   styleUrl: './invoice.component.css'
 })
 export class InvoiceComponent {
-
+  // handle evnt emitter from filter component
+  handleFilterClicked() {
+    console.log('Filter clicked in child')
+  }
 }
