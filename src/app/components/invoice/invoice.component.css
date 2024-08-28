@@ -1,0 +1,41 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    gap: 1.5rem;
+}
+
+.container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-1-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.text {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.length {
+    font-size: var(--font-size-md);
+    color: var(--dark-gray);
+}
+
+.container-1-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .main-container {
+        margin: 2rem;
+    }
+}

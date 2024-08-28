@@ -1,0 +1,25 @@
+.btn-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 5.625rem;
+    height: 2.75rem;
+    border-radius: 24px;
+    background-color: var(--purple);
+}
+
+.oval {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-text {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--white);
+}
