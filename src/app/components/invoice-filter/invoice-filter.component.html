@@ -3,14 +3,16 @@
     <svg width="11" height="7" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1l4.228 4.228L9.456 1" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/>
     </svg>
-
+</div>
     <!-- drop-down menu -->
      @if(showDropDown) {
      <div class="dropdown-menu">
-        <div class="dropdown-item">
-            <input type="checkbox" id="paid">
-            <label for="paid">Paid</label>
-        </div>
+        @for (item of statuses; track $index) {
+            <!-- draft -->
+            <div class="item" (click)="getSelectedStatus(item)">
+                <input type="checkbox" id="{{item}}">
+                <label for="{{item}}" (click)="getSelectedStatus(item)">{{item | titlecase}}</label>
+            </div> 
+        }
      </div>
     }
-</div>

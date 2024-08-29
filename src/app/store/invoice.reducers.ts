@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { Invoice } from "../interface/invoice";
-import { loadInvoice, loadInvoiceFailure, loadInvoiceSuccess } from "./invoice.actions";
+import { loadInvoice, loadInvoiceFailure, loadInvoiceSuccess, setSelectedStatus } from "./invoice.actions";
 // define the shape
 import { InvoiceState } from "../interface/invoice";
 
@@ -9,7 +9,7 @@ import { InvoiceState } from "../interface/invoice";
 export const initialState: InvoiceState = {
     invoice: [],
     error: null,
-    selectedStatus: null
+    selectedStatuses: []
 }
 
 // create reducer
@@ -20,5 +20,7 @@ export const invoiceReducer = createReducer(
 
     on(loadInvoiceSuccess, (state, {invoice}) => ({...state, invoice})),
 
-    on(loadInvoiceFailure, (state, {error}) => ({...state, error}))
+    on(loadInvoiceFailure, (state, {error}) => ({...state, error})),
+ 
+    on(setSelectedStatus, (state, {selectedStatuses}) => ({ ...state, selectedStatuses }))
 )

@@ -6,11 +6,11 @@
         </div>
 
         <div class="container-1-2">
-            <app-invoice-filter (filterClicked)="handleFilterClicked()"/>
+            <app-invoice-filter (filterClicked)="handleFilterClicked()" (status)="onStatusChange($event)"/>
             <app-invoice-new-button/>
         </div>
     </div>
     <div class="invoice-list">
-        <app-invoice-list/>  
+        <app-invoice-list [selectedStatuses]="currentStatuses"/>  
     </div>
 </div>

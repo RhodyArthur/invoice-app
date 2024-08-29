@@ -62,13 +62,15 @@
     --text-color: var(--black);
     --modal-bg: var(--white);
     --draft: var(--header-bg);
+    --drop-down: var(--white);
 }
 
 .dark-mode {
     --main-bg-color: var(--black-50);
     --text-color: var(--white);
     --modal-bg: var(--dark-blue);
-    --draft: var(var(--light-purple))
+    --draft: var(--light-purple);
+    --drop-down: var(--blue-black);
 }
 
 body {

@@ -15,3 +15,9 @@ export const loadInvoiceSuccess = createAction('[Invoice] Invoices Loaded Succes
 export const loadInvoiceFailure = createAction('[Invoice] Invoices Loaded Error',
     props<{error: any}>()
 );
+
+
+// set selected status
+export const setSelectedStatus = createAction('[Invoice] Set Status',
+    props<{selectedStatuses: string[]}>()
+)

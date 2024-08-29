@@ -1,9 +1,9 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, Input, LOCALE_ID, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState, Invoice } from '../../interface/invoice';
 import { select, Store } from '@ngrx/store';
-import { selectAllInvoices } from '../../store/invoice.selectors';
-import { loadInvoice, loadInvoiceSuccess } from '../../store/invoice.actions';
+import { selectAllInvoices, selectFilteredInvoice } from '../../store/invoice.selectors';
+import { loadInvoice, loadInvoiceSuccess, setSelectedStatus } from '../../store/invoice.actions';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,14 +16,16 @@ import { CommonModule } from '@angular/common';
 export class InvoiceListComponent implements OnInit{
   invoices$: Observable<Invoice[]>;
 
+  @Input() selectedStatuses: string[] = [];
+
   ngOnInit(): void {
     this.store.dispatch(loadInvoice())
-
   }
  
   constructor(private store: Store<AppState>) {
-    this.invoices$ = store.pipe(select(selectAllInvoices))
+    this.invoices$ = store.select(selectFilteredInvoice);
   }
 
-  
+
+
 }

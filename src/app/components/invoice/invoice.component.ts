@@ -11,8 +11,16 @@ import { InvoiceNewButtonComponent } from "../invoice-new-button/invoice-new-but
   styleUrl: './invoice.component.css'
 })
 export class InvoiceComponent {
+  currentStatuses: string[] = [];
+
   // handle evnt emitter from filter component
   handleFilterClicked() {
     console.log('Filter clicked in child')
+  }
+
+
+  // handle status change from the filter component
+  onStatusChange(statuses: string[]) {
+    this.currentStatuses = statuses;
   }
 }

@@ -16,17 +16,16 @@ export const selectAllInvoices = createSelector(
 // get selected status
 export const selectStatus = createSelector(
   selectInvoiceState,
-  (state: InvoiceState) => state.selectedStatus
+  (state: InvoiceState) => state.selectedStatuses
 )
 
 // get filtered invoices based on status
-export const selectInvoiceStatus = createSelector(
+export const selectFilteredInvoice = createSelector(
   selectStatus,
   selectAllInvoices,
-  (selectedStatus: string | null, allInvoices: Invoice[]) => {
-    if (selectedStatus && allInvoices) {
-      return allInvoices.filter((invoice: Invoice) => invoice.status === selectedStatus)
+  (selectedStatuses: string[], allInvoices: Invoice[]) => {
+    if (selectedStatuses.length > 0) {
+      return allInvoices.filter(invoice => selectedStatuses.includes(invoice.status));
     }
-    return allInvoices;
-  }
-);
+    return [];
+  })

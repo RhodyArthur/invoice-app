@@ -34,7 +34,7 @@ export interface Address {
 export interface InvoiceState{
     invoice: Invoice[]
     error: string | null
-    selectedStatus: string | null
+    selectedStatuses: string[]
 }
 
 export interface AppState {
