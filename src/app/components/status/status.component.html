@@ -1,0 +1,8 @@
+<div class="status-container">
+    <p class="status"
+                 [class]="{'paid': invoice.status === 'paid',
+                           'pending': invoice.status === 'pending',
+                           'draft': invoice.status === 'draft'
+                }"
+                >&#8226; {{invoice.status | titlecase}}</p>
+</div>

@@ -29,3 +29,9 @@ export const selectFilteredInvoice = createSelector(
     }
     return [];
   })
+
+// get invoice by id
+export const selectInvoiceById = (invoiceId: string) => createSelector(
+  selectInvoiceState,
+  (state: InvoiceState) => state.invoice.find(invoice => invoice.id === invoiceId)
+)

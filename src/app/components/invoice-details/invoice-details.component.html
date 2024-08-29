@@ -1,11 +1,21 @@
-<div class="main-container">
+<div class="main-container" *ngIf="invoice$ | async as invoice">
     <div class="navigate" (click)="goToPrevious()">
         <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/>
         </svg>
         <p>Go back</p>
     </div>
-    <div class="status-container"></div>
-    <div class="details-container"></div>
+
+    <div class="status-container">
+        <p class="text">Status</p>
+        <app-status [invoice]="invoice"/>
+    </div>
+
+    <div class="details-container">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <div class="btn-container"></div>
 </div>

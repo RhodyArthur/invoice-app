@@ -6,11 +6,12 @@ import { selectAllInvoices, selectFilteredInvoice } from '../../store/invoice.se
 import { loadInvoice, loadInvoiceSuccess, setSelectedStatus } from '../../store/invoice.actions';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { StatusComponent } from "../status/status.component";
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StatusComponent],
   templateUrl: './invoice-list.component.html',
   styleUrl: './invoice-list.component.css'
 })
@@ -20,7 +21,7 @@ export class InvoiceListComponent implements OnInit{
   @Input() selectedStatuses: string[] = [];
 
   ngOnInit(): void {
-    this.store.dispatch(loadInvoice())
+    // this.store.dispatch(loadInvoice())
   }
  
   constructor(private store: Store<AppState>, private router: Router) {

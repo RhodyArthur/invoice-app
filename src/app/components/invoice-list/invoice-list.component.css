@@ -47,33 +47,6 @@
     font-weight: 600;
 }
 
-.status {
-    width: 6.5rem;
-    height: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
-    font-size: var(--font-size-md);
-    font-weight: 600;
-}
-
-
-.paid {
-    color: var(--teal);
-    background-color: rgba(151, 243, 228, 0.1);
-}
-
-.pending {
-    color: var(--orange-yellow);
-    background-color: rgba(255, 143, 0, 0.1);
-}
-
-.draft {
-    color: var(--draft);
-    background-color: rgba(151, 151, 151, 0.1);
-}
-
 .arrow-right {
     display: none;
     cursor: pointer;
@@ -143,8 +116,6 @@ MEDIA QUERIES
 @media screen and (min-width: 1024px) {
     .list-container {
         max-width: 45.625rem;
-        /* overflow: scroll; */
-        /* margin: auto; */
     }
     
 }
