@@ -12,7 +12,7 @@
     }
     @else{
     @for (invoice of (invoices$ | async); track $index) {
-    <div class="invoice-item">
+    <div class="invoice-item" (click)="navigateToDetails(invoice.id)">
         <div class="container-0">
             <p class="invoice-id"><span>#</span>{{invoice.id}}</p>
             <p class="name">{{invoice.clientName}}</p>

@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { selectAllInvoices, selectFilteredInvoice } from '../../store/invoice.selectors';
 import { loadInvoice, loadInvoiceSuccess, setSelectedStatus } from '../../store/invoice.actions';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-list',
@@ -22,10 +23,13 @@ export class InvoiceListComponent implements OnInit{
     this.store.dispatch(loadInvoice())
   }
  
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.invoices$ = store.select(selectFilteredInvoice);
   }
 
-
+  // navigate to details page
+  navigateToDetails(invoiceId: string) {
+    this.router.navigate(['/details', invoiceId])
+  }
 
 }
