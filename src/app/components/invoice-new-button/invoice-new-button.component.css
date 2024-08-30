@@ -23,3 +23,12 @@
     font-weight: 600;
     color: var(--white);
 }
+
+/* 
+=====================
+HOVERING EFFECTS
+===================== */
+.btn-container:hover {
+    cursor: pointer;
+    background-color: var(--soft-purple);
+}

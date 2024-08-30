@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
 import { selectInvoiceById } from '../../store/invoice.selectors';
 import { CommonModule } from '@angular/common';
 import { StatusComponent } from "../status/status.component";
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'app-invoice-details',
   standalone: true,
-  imports: [CommonModule, StatusComponent],
+  imports: [CommonModule, StatusComponent, ButtonComponent],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.css'
 })
@@ -36,4 +37,8 @@ export class InvoiceDetailsComponent implements OnInit {
       this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
     }
   }
+
+  // getTotal() {
+  //    return this.invoice.
+  // }
 }

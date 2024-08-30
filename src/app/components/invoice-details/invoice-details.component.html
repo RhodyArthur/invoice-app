@@ -9,12 +9,13 @@
     <div class="status-container">
         <p class="key">Status</p>
         <app-status [invoice]="invoice"/>
+        <app-button class="btns"/>
     </div>
 
     <div class="details-container">
         <div class="details-1">
             <div class="details-id-description">
-                <p class="id">#{{invoice.id}}</p>
+                <p class="id"><span class="key">#</span>{{invoice.id}}</p>
                 <p class="description">{{invoice.description}}</p>
             </div>
             <div class="sender-address">
@@ -59,10 +60,45 @@
         </div>
 
 
-        <div class="total-container">
-            
+        <div class="total-items-container">
+            <div class="items-container">
+                <div class="item-header">
+                    <p>Item Name</p>
+                    <div class="item-header-1">
+                        <p>QTY</p>
+                        <p>Price</p>
+                        <p>Total</p>
+                    </div>
+                </div>
+                @for (item of invoice.items; track $index) {
+                    <!-- display this for mobile screen -->
+                <div class="item">
+                    <div class="item-quantity">
+                        <p class="item-name">{{item.name}}</p>
+                        <p class="quantity">{{item.quantity}} x {{item.price | currency:'GBP'}}</p>
+                    </div>
+                    <p class="amount">{{item.quantity * item.price | currency:'GBP'}}</p>
+                </div>
+
+                <!-- display for large screens -->
+                <div class="item-xl">
+                    <p>{{item.name}}</p>
+
+                    <div class="item-xl-1">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <p class="quantity">{{item.price | currency:'GBP'}}</p>
+                        <p class="amount">{{item.quantity * item.price | currency:'GBP'}}</p>
+                    </div>
+                </div>
+            }
+            </div>
+
+            <div class="total-container">
+                <p class="text">Grand Total</p>
+                <p class="grand-total">7685</p>
+            </div>
         </div>
     </div>
 
-    <div class="btn-container"></div>
+    <app-button class="show-mobile"/>
 </div>
