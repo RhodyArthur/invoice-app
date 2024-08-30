@@ -95,10 +95,18 @@
 
             <div class="total-container">
                 <p class="text">Grand Total</p>
-                <p class="grand-total">7685</p>
+                <p class="grand-total">{{invoice.total | currency:'GBP'}}</p>
             </div>
         </div>
     </div>
 
     <app-button class="show-mobile"/>
+    @if (isModalVisible) {
+    <div class="delete-container">
+        <app-modal/>
+    </div>
+}
 </div>
+
+
+

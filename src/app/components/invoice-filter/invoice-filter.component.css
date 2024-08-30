@@ -60,6 +60,6 @@ MEDIA QUERIES
         width: 100%;
     } */
     .text span {
-        display: flex;
+        display: inline;
     }
 }

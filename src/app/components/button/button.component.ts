@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-button',
@@ -9,7 +10,10 @@ import { Component } from '@angular/core';
 })
 export class ButtonComponent {
 
+  constructor(private modalService: ModalService) {}
+
   displayDelete() {
-    console.log('delete')
+    this.modalService.show();
+    console.log('button display')
   }
 }

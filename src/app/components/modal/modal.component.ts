@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
-import { Invoice } from '../../interface/invoice';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -10,10 +9,14 @@ import { Invoice } from '../../interface/invoice';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent implements OnInit{
-  invoiceData: Invoice[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(public modalService: ModalService) {}
 
   ngOnInit() {
   }
+
+  deleteInvoice() {
+    this.modalService.hide()
+  }
+
 }

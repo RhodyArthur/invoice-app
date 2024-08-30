@@ -27,6 +27,10 @@
     color: var(--dark-gray);
 }
 
+.length span {
+    display: none;
+}
+
 .container-1-2 {
     display: flex;
     justify-content: space-between;
@@ -39,4 +43,7 @@
         margin: 2rem;
     }
     
+    .length span {
+        display: inline;
+    }
 }

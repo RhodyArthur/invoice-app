@@ -1,8 +1,16 @@
 <div class="main-container">
     <div class="container-1">
-        <div class="container-1-1">
+        <div class="container-1-1" *ngIf="invoice$ | async as invoice">
             <p class="text">Invoices</p>
-            <p class="length"> 7 invoices</p>
+            @if (invoice.length === 0) {
+                <p class="length">No invoice</p>
+            }
+            @else if (invoice.length === 1) {
+                <p class="length"><span>There is</span> {{invoice.length}} invoice</p>
+            }
+            @else {
+                <p class="length"><span>There are</span> {{invoice.length}} invoices</p>
+            }
         </div>
 
         <div class="container-1-2">

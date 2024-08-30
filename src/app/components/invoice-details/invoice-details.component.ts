@@ -7,23 +7,27 @@ import { selectInvoiceById } from '../../store/invoice.selectors';
 import { CommonModule } from '@angular/common';
 import { StatusComponent } from "../status/status.component";
 import { ButtonComponent } from "../button/button.component";
+import { ModalComponent } from "../modal/modal.component";
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-invoice-details',
   standalone: true,
-  imports: [CommonModule, StatusComponent, ButtonComponent],
+  imports: [CommonModule, StatusComponent, ButtonComponent, ModalComponent],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.css'
 })
 export class InvoiceDetailsComponent implements OnInit {
 
   invoice$!: Observable<Invoice | undefined>;
+  isModalVisible:boolean = false;
 
   @Input() invoice!: Invoice;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private store: Store<AppState>
+              private store: Store<AppState>,
+              private modalService: ModalService
   ) {}
 
   goToPrevious() {
@@ -36,9 +40,12 @@ export class InvoiceDetailsComponent implements OnInit {
     if(invoiceId) {
       this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
     }
+
+    // display modal
+    this.modalService.isModalVisible$.subscribe(isVisible => {
+      this.isModalVisible = isVisible;
+    })
+    
   }
 
-  // getTotal() {
-  //    return this.invoice.
-  // }
 }

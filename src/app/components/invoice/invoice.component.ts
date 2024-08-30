@@ -6,18 +6,19 @@ import { Observable } from 'rxjs';
 import { AppState, Invoice } from '../../interface/invoice';
 import { Store } from '@ngrx/store';
 import { loadInvoice } from '../../store/invoice.actions';
-import { selectAllInvoices } from '../../store/invoice.selectors';
+import { selectAllInvoices, selectFilteredInvoice } from '../../store/invoice.selectors';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoice',
   standalone: true,
-  imports: [InvoiceListComponent, InvoiceFilterComponent, InvoiceNewButtonComponent],
+  imports: [InvoiceListComponent, InvoiceFilterComponent, InvoiceNewButtonComponent, CommonModule],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.css'
 })
 export class InvoiceComponent implements OnInit{
   currentStatuses: string[] = [];
-  invoice$: Observable<Invoice[]> = this.store.select(selectAllInvoices); 
+  invoice$: Observable<Invoice[]> = this.store.select(selectFilteredInvoice); 
 
   // handle evnt emitter from filter component
   handleFilterClicked() {
