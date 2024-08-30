@@ -263,6 +263,8 @@ MEDIA QUERY
 
     .delete-container {
         overflow: scroll;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
     }
 }
 
