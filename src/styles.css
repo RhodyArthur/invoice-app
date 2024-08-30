@@ -28,6 +28,7 @@
     --header-bg: #373B53;
     --bar: #494E6E;
     --btn-bg: #F9FAFE;
+    --gray: #777F98;
     
 
 
@@ -68,6 +69,8 @@
     --btn-text: var(--light-gray-blue);
     --btn-hover: var(--light-purple);
     --btn-hover-text: var(--light-gray-blue);
+    --form-bg: var(--white);
+    --input-border: var(--light-purple);
 
 }
 
@@ -82,7 +85,8 @@
     --btn-text: var(--white);
     --btn-hover: var(--white);
     --btn-hover-text: var(--light-purple);
-
+    --form-bg: var(--black-50);
+    --input-border: var(--blue-black);
 
 }
 

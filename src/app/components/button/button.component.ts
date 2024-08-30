@@ -14,6 +14,5 @@ export class ButtonComponent {
 
   displayDelete() {
     this.modalService.show();
-    console.log('button display')
   }
 }

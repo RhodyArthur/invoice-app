@@ -6,6 +6,7 @@
     height: 2.75rem;
     border-radius: 24px;
     background-color: var(--purple);
+    border: 1px solid transparent;
 }
 
 .oval {
@@ -22,6 +23,13 @@
     font-size: var(--font-size-md);
     font-weight: 600;
     color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.btn-text span {
+    display: none;
 }
 
 /* 
@@ -31,4 +39,15 @@ HOVERING EFFECTS
 .btn-container:hover {
     cursor: pointer;
     background-color: var(--soft-purple);
+}
+
+@media screen and (min-width:768px) {
+    .btn-container {
+        width: 8rem;
+    }
+   
+    .btn-text span {
+        display: flex;
+    }
+    
 }

@@ -2,12 +2,21 @@
     width: 100%;
 }
 
+.form {
+    position: absolute;
+    top: 13%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+
 
 @media screen and (min-width: 1024px) {
     .main-container {
         display: flex;
         justify-content: space-between;
         overflow: hidden !important;
+        height: 100vh;
 
     }
 
@@ -18,5 +27,10 @@
         overflow: scroll;
         scrollbar-width: none;
         scroll-behavior: smooth;
+    }
+
+    .form {
+        top: 0;
+        left: 10%;
     }
 }

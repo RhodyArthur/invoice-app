@@ -1,0 +1,122 @@
+<div class="form-container">
+    <!-- navigation -->
+    <div class="navigate">
+        <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/>
+        </svg>
+        <p>Go back</p>
+    </div>
+
+    <!-- title -->
+     <p class="form-title">New Invoice</p>
+
+     <!-- bill-form -->
+      <div class="bill-from-container">
+        <p class="title">Bill From</p>
+
+        <!-- street-address -->
+            <label for="street">Street Address
+                <input type="text" name="street">
+            </label>
+
+        <div class="container">
+            <div class="container-1">
+                <label for="city">City
+                    <input type="text" name="city">
+                </label>
+
+                <label for="code">Post Code
+                    <input type="text" name="code">
+                </label>
+            </div>
+
+            <label for="country">Country
+                <input type="text" name="country">
+            </label>
+
+    </div>
+      </div>
+
+
+     <!-- bill-to -->
+      <div class="bill-from-container">
+        <p class="title">Bill To</p>
+
+        <label for="name">Client's Name
+            <input type="text" name="name">
+        </label>
+
+        <label for="email">Client's Email
+            <input type="email" name="email" id="email">
+        </label>
+
+        <!-- street-address -->
+            <label for="street">Street Address
+                <input type="text" name="street">
+            </label>
+
+            <div class="container">
+                <div class="container-1">
+                    <label for="city">City
+                        <input type="text" name="city">
+                    </label>
+    
+                    <label for="code">Post Code
+                        <input type="text" name="code">
+                    </label>
+                </div>
+    
+                <label for="country">Country
+                    <input type="text" name="country">
+                </label>
+    
+        </div>
+      </div>
+
+     <!-- Invoice info -->
+
+        <div class="date-container">
+            <label for="invoice-date">Invoice Date
+                <input type="date" name="invoice-date" id="invoice-date">
+            </label>
+    
+            <label for="payment-terms">Payment Terms
+                <select class="form-item"  id="payment-terms" name="payment-terms">
+                    <option value="2">Next 2 Days</option>
+                    <option value="3">Next 3 Days</option>
+                    <option value="4">Next 4 Days</option>
+                    <option value="5">Next 5 Days</option>
+                    <option value="6">Next 6 Days</option>
+                    <option value="7">Next 7 Days</option>
+                  </select>
+            </label>
+        </div>
+
+      <!-- item list -->
+       <div class="item-list-container">
+        <p class="item-text">Item List</p>
+
+        <div class="item-container">
+            <label for="item-name">Item name
+                <input type="text" name="item-name">
+            </label>
+
+            <div class="item-quantity-container">
+                <label for="quantity">QTY.
+                    <input type="number" name="quantity" id="quantity">
+                </label>
+                <label for="price">Price
+                    <input type="number" name="price" id="price">
+                </label>
+                <label for="total">Total
+                    <input type="number" name="total" id="total">
+                </label>
+
+                <span>
+                    <img src="../../../assets/icon-delete.svg" alt="">
+                </span>
+               
+            </div>
+        </div>
+       </div>
+</div>

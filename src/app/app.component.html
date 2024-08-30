@@ -3,6 +3,8 @@
     <div class="invoice">
         <!-- <app-invoice/> -->
         <router-outlet/>
-        
+        @if (isFormVisible) {
+        <app-invoice-form class="form"/>
+    }
     </div>
 </div>
