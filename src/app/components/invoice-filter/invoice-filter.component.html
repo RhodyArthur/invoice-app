@@ -9,9 +9,9 @@
      <div class="dropdown-menu">
         @for (item of statuses; track $index) {
             <!-- draft -->
-            <div class="item" (click)="getSelectedStatus(item)">
-                <input type="checkbox" id="{{item}}">
-                <label for="{{item}}" (click)="getSelectedStatus(item)">{{item | titlecase}}</label>
+            <div class="item">
+                <input type="checkbox" id="{{item}}" name="{{item}}" (click)="getSelectedStatus(item)">
+                <label for="{{item}}">{{item | titlecase}}</label>
             </div> 
         }
      </div>

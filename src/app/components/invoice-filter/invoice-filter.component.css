@@ -4,6 +4,7 @@
     gap: .5rem;
     font-size: var(--font-size-md);
     font-weight: 600;
+    cursor: pointer;
 }
 
 .text span {

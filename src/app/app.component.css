@@ -9,7 +9,7 @@
     }
 
     .invoice {
-        margin: auto;
+        margin: 0 auto;
         max-width: 768px;
         width: 100%;
     }
