@@ -27,7 +27,7 @@ export const selectFilteredInvoice = createSelector(
     if (selectedStatuses.length > 0) {
       return allInvoices.filter(invoice => selectedStatuses.includes(invoice.status));
     }
-    return [];
+    return allInvoices;
   })
 
 // get invoice by id

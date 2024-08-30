@@ -34,10 +34,6 @@ export class InvoiceDetailsComponent implements OnInit {
 
     if(invoiceId) {
       this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
-      this.invoice$.subscribe(
-        data => console.log(data)
-      )
-      console.log(this.invoice$)
     }
   }
 }

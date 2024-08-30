@@ -7,14 +7,61 @@
     </div>
 
     <div class="status-container">
-        <p class="text">Status</p>
+        <p class="key">Status</p>
         <app-status [invoice]="invoice"/>
     </div>
 
     <div class="details-container">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="details-1">
+            <div class="details-id-description">
+                <p class="id">#{{invoice.id}}</p>
+                <p class="description">{{invoice.description}}</p>
+            </div>
+            <div class="sender-address">
+                <p>{{invoice.senderAddress.street}}
+                    <br>
+                    {{invoice.senderAddress.city}} <br>
+                    {{invoice.senderAddress.postCode}} <br>
+                    {{invoice.senderAddress.country}}
+                </p>
+            </div>
+        </div>
+        <div class="details-2">
+            <div class="details-2-1">
+                <div class="due-date-container">
+                    <div class="date">
+                        <p class="key">Invoice Date</p>
+                        <p class="value">{{invoice.createdAt}}</p>
+                    </div>
+
+                    <div class="date">
+                        <p class="key">Payment Due</p>
+                        <p class="value">{{invoice.paymentDue}}</p>
+                    </div>
+                </div>
+
+                <div class="client-details-container">
+                    <p class="key">Bill To</p>
+                    <p class="value">{{invoice.clientName}}</p>
+                    <div class="sender-address">
+                        <p>{{invoice.clientAddress.street}}<br>
+                            {{invoice.clientAddress.city}} <br>
+                            {{invoice.clientAddress.postCode}} <br>
+                            {{invoice.clientAddress.country}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="details-2-2">
+                <p class="key">Sent to</p>
+                <p class="value">{{invoice.clientEmail}}</p>
+            </div>
+        </div>
+
+
+        <div class="total-container">
+            
+        </div>
     </div>
 
     <div class="btn-container"></div>
