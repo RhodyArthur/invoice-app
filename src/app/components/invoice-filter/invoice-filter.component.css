@@ -55,10 +55,6 @@ input[type='checkbox']:hover {
 MEDIA QUERIES
 ===================== */
 @media screen and (min-width: 768px) {
-    /* .filter-container {
-        max-width: 118px;
-        width: 100%;
-    } */
     .text span {
         display: inline;
     }

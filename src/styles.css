@@ -71,6 +71,8 @@
     --btn-hover-text: var(--light-gray-blue);
     --form-bg: var(--white);
     --input-border: var(--light-purple);
+    --draft-btn-text: var(--dark-gray);
+    --draft-btn-hover: var(--black);
 
 }
 
@@ -87,6 +89,8 @@
     --btn-hover-text: var(--light-purple);
     --form-bg: var(--black-50);
     --input-border: var(--blue-black);
+    --draft-btn-text: var(--light-purple);
+    --draft-btn-hover: var(--dark-blue);
 
 }
 

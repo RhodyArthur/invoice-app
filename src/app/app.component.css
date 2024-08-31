@@ -7,9 +7,12 @@
     top: 13%;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
+    overflow: hidden !important;
 }
 
-
+.no-scroll {
+    overflow: hidden;
+}
 
 @media screen and (min-width: 1024px) {
     .main-container {

@@ -3,7 +3,18 @@
     flex-direction: column;
     background-color: var(--form-bg);
     padding: 1rem;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     gap: 1.5rem;
+    overflow: scroll;
+    /* padding-bottom: 4rem; */
 }
 
 .navigate {
@@ -42,6 +53,7 @@ input, select
     width: 100%;
     background-color: var(--modal-bg);
     outline: none;
+    cursor: pointer;
 }
 
 .title, label {
@@ -73,6 +85,53 @@ label {
     margin-top: .8rem;
 }
 
+
+.add-btn {
+    padding: 1rem;
+    border-radius: 24px;
+    background-color: var(--total-1);
+    color: var(--light-gray-blue);
+    outline: none;
+    border: 1px solid var(--total-1);
+}
+
+.btn-container {
+        display: flex;
+        justify-content: space-around;
+        gap: .5rem;
+        background-color: var(--modal-bg);
+        padding: 1.25rem;
+        width: 100%;
+        margin-top: 2rem;
+        box-shadow: 0px -15px 40px 2px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+}
+
+.btn {
+    padding: 1rem;
+    border-radius: 24px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.discard {
+    background-color: var(--total-1);
+    color: var(--btn-text);
+}
+
+.draft {
+    background-color: var(--header-bg);
+    color: var(--draft-btn-text);
+}
+
+.send {
+    background-color: var(--purple);
+    color: var(--white);
+}
 /* 
 =====================
 HOVERING EFFECTS
@@ -80,6 +139,23 @@ HOVERING EFFECTS
 input:focus-within,
 input:active {
     border: 1px solid var(--input-border);
+}
+
+.add-btn:hover {
+    background-color: var(--light-purple);
+}
+
+.discard:hover {
+    background-color: var(--btn-hover);
+    color: var(--btn-hover-text);
+}
+
+.draft:hover {
+    background-color: var(--draft-btn-hover);
+}
+
+.send:hover {
+    background-color: var(--soft-purple);
 }
 
 /*
@@ -114,4 +190,17 @@ MEDIA QUERIES
     }
 
 
+    .btn-container {
+        max-width: 38.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .form {
+        padding-bottom: 4rem;
+    }
+    .btn-container {
+        left: 9%;
+        bottom: 9%;
+    }
 }
