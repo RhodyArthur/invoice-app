@@ -1,7 +1,7 @@
 <div class="form-container">
-    <form action="" class="form">
+    <form [formGroup]="newInvoiceForm" (ngSubmit)="onSubmit()" class="form">
     <!-- navigation -->
-    <div class="navigate">
+    <div class="navigate" (click)="navigateToPrevious()">
         <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/>
         </svg>
@@ -9,30 +9,34 @@
     </div>
 
     <!-- title -->
+     @if (invoice) {
+        <p class="form-title">Edit <span>#</span>{{invoice.id}}</p>
+     }
+     @else {
      <p class="form-title">New Invoice</p>
-
+     }
      <!-- bill-form -->
-      <div class="bill-from-container">
+      <div class="bill-from-container" formGroupName="billFrom">
         <p class="title">Bill From</p>
 
         <!-- street-address -->
             <label for="street">Street Address
-                <input type="text" name="street">
+                <input type="text" name="street" formControlName="street">
             </label>
 
         <div class="container">
             <div class="container-1">
                 <label for="city">City
-                    <input type="text" name="city">
+                    <input type="text" name="city" formControlName="city">
                 </label>
 
                 <label for="code">Post Code
-                    <input type="text" name="code">
+                    <input type="text" name="code" formControlName="code">
                 </label>
             </div>
 
             <label for="country">Country
-                <input type="text" name="country">
+                <input type="text" name="country" formControlName="country">
             </label>
 
     </div>
@@ -40,35 +44,35 @@
 
 
      <!-- bill-to -->
-      <div class="bill-from-container">
+      <div class="bill-from-container" formGroupName="billTo">
         <p class="title">Bill To</p>
 
         <label for="name">Client's Name
-            <input type="text" name="name">
+            <input type="text" name="name" formControlName="clientName">
         </label>
 
         <label for="email">Client's Email
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" formControlName="clientEmail">
         </label>
 
         <!-- street-address -->
             <label for="street">Street Address
-                <input type="text" name="street">
+                <input type="text" name="street" formControlName="street">
             </label>
 
             <div class="container">
                 <div class="container-1">
                     <label for="city">City
-                        <input type="text" name="city">
+                        <input type="text" name="city" formControlName="city">
                     </label>
     
                     <label for="code">Post Code
-                        <input type="text" name="code">
+                        <input type="text" name="code" formControlName="code">
                     </label>
                 </div>
     
                 <label for="country">Country
-                    <input type="text" name="country">
+                    <input type="text" name="country" formControlName="country">
                 </label>
     
         </div>
@@ -77,43 +81,49 @@
      <!-- Invoice info -->
         <div class="date-container">
             <label for="invoice-date">Invoice Date
-                <input type="date" name="invoice-date" id="invoice-date">
+                <input type="date" name="invoice-date" id="invoice-date" formControlName="createdAt">
             </label>
     
             <label for="payment-terms">Payment Terms
-                <select class="form-item"  id="payment-terms" name="payment-terms">
-                    <option value="2">Next 2 Days</option>
-                    <option value="3">Next 3 Days</option>
-                    <option value="4">Next 4 Days</option>
-                    <option value="5">Next 5 Days</option>
-                    <option value="6">Next 6 Days</option>
+                <select class="form-item"  id="payment-terms" name="payment-terms" formControlName="paymentTerms">
+                    <option value="1">Next Day</option>
                     <option value="7">Next 7 Days</option>
+                    <option value="14">Next 14 Days</option>
+                    <option value="30">Next 30 Days</option>
+                    <option value="60">Next 60 Days</option>
+                    <option value="90">Next 90 Days</option>
                   </select>
             </label>
         </div>
 
+        <label for="description">Project description
+            <input type="text" name="description" formControlName="description">
+        </label>
+
       <!-- item list -->
-       <div class="item-list-container">
+       <div class="item-list-container" formArrayName="items">
         <p class="item-text">Item List</p>
 
-        <div class="item-container">
-            <label for="item-name">Item name
-                <input type="text" name="item-name">
+        <div class="item-container" *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+            <label [for]="'item-name' + i">Item name
+                <input type="text" name="item-name" [id]="'item-name' + i" formControlName="itemName">
             </label>
 
             <div class="item-quantity-container">
-                <label for="quantity">QTY.
-                    <input type="number" name="quantity" id="quantity">
-                </label>
-                <label for="price">Price
-                    <input type="number" name="price" id="price">
-                </label>
-                <label for="total">Total
-                    <input type="number" name="total" id="total">
+                <label [for]="'quantity' + i">QTY.
+                    <input type="number" name="quantity" [id]="'quantity' + i" formControlName="quantity" (change)="calculateItemTotal(i)">
                 </label>
 
-                <span>
-                    <img src="../../../assets/icon-delete.svg" alt="">
+                <label [for]="'price' + i">Price
+                    <input type="number" name="price" [id]="'price' + i" formControlName="price" (change)="calculateItemTotal(i)">
+                </label>
+
+                <label [for]="'total' + i">Total
+                    <input type="number" name="total" [id]="'total' + i" formControlName="total" readonly>
+                </label>
+
+                <span (click)="removeItem(i)">
+                    <img src="../../../assets/icon-delete.svg" alt="icon-delete">
                 </span>
                
             </div>
@@ -121,7 +131,7 @@
        </div>
 
        <!-- add new item -->
-        <button class="add-btn">
+        <button class="add-btn" (click)="addItem()">
             <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.313 10.023v-3.71h3.71v-2.58h-3.71V.023h-2.58v3.71H.023v2.58h3.71v3.71z" fill="#7E88C3" fill-rule="nonzero"/>
             </svg>
@@ -129,9 +139,14 @@
 
         <!-- buttons -->
          <div class="btn-container">
-            <button type="submit" class="discard btn">Discard</button>
-            <button type="submit" class="draft btn">Save as Draft</button>
-            <button type="submit" class="send btn">Save & Send</button>
+            @if (!invoice) {
+            <button type="submit" class="discard btn" (click)="closeForm()">Discard</button>
+         }
+            <button type="submit" class="draft btn" (click)="saveAsDraft()">Save as Draft</button>
+
+            <button type="submit" class="send btn">
+                {{invoice ? "Save Changes" : "Save & Send"}}
+            </button>
          </div>
         </form>
 </div>

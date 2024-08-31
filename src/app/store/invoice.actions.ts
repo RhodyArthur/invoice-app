@@ -20,4 +20,21 @@ export const loadInvoiceFailure = createAction('[Invoice] Invoices Loaded Error'
 // set selected status
 export const setSelectedStatus = createAction('[Invoice] Set Status',
     props<{selectedStatuses: string[]}>()
-)
+);
+
+
+// add invoice
+export const addInvoice = createAction('[Invoice] Add Invoice',
+    props<{invoice: Invoice}>()
+);
+
+// update invoice
+export const updateInvoice = createAction(
+    '[Invoice] Update Invoice',
+    props<{ invoice: Partial<Invoice> & { id: string } }>()
+  );
+
+  export const deleteInvoice = createAction(
+    '[Invoice] Delete Invoice',
+    props<{ id: string }>()
+  );

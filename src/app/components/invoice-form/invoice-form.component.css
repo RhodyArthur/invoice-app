@@ -14,6 +14,7 @@
     flex: 1;
     gap: 1.5rem;
     overflow: scroll;
+    padding-bottom: 8rem;
 }
 
 .navigate {
@@ -114,6 +115,7 @@ label {
     font-size: var(--font-size-md);
     font-weight: 600;
     border: none;
+    outline: none;
     cursor: pointer;
 }
 
@@ -191,6 +193,10 @@ MEDIA QUERIES
 
     .btn-container {
         max-width: 38.5rem;
+    }
+
+    .form {
+        padding-bottom: 4rem;
     }
 }
 

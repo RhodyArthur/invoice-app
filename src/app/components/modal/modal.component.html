@@ -2,8 +2,8 @@
     <p class="modal-title">Confirm Deletion</p>
     <p class="modal-msg">Are you sure you want to delete invoice #XM9141? This action cannot be undone.</p>
 
-    <div class="btn-container">
-        <button type="button" class="cancel-btn">Cancel</button>
-        <button type="button" class="delete-btn" (click)="confirmDelete()">Delete</button>
+    <div class="btn-container" *ngIf="invoice$ | async as invoice">
+        <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+        <button type="button" class="delete-btn" (click)="confirmDelete(invoice.id)">Delete</button>
     </div>
 </div>
