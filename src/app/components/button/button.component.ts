@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -9,10 +9,11 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
+  @Output() deleteClick = new EventEmitter<void>();
 
   constructor(private modalService: ModalService) {}
 
   displayDelete() {
-    this.modalService.show();
+    this.deleteClick.emit();
   }
 }

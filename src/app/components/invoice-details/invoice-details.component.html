@@ -9,7 +9,7 @@
     <div class="status-container">
         <p class="key">Status</p>
         <app-status [invoice]="invoice"/>
-        <app-button class="btns"/>
+        <app-button class="btns" (deleteClick)="handleButtonClick()"/>
     </div>
 
     <div class="details-container">
@@ -100,10 +100,10 @@
         </div>
     </div>
 
-    <app-button class="show-mobile"/>
-    @if (isModalVisible) {
+    <app-button class="show-mobile" (deleteClick)="handleButtonClick()"/>
+    @if (showModal) {
     <div class="delete-container">
-        <app-modal/>
+        <app-modal [visible]="showModal" (close)="closeModal()"/>
     </div>
 }
 </div>

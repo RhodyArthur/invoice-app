@@ -20,7 +20,7 @@ import { ModalService } from '../../services/modal.service';
 export class InvoiceDetailsComponent implements OnInit {
 
   invoice$!: Observable<Invoice | undefined>;
-  isModalVisible:boolean = false;
+  showModal: boolean = false;
 
   @Input() invoice!: Invoice;
 
@@ -40,12 +40,14 @@ export class InvoiceDetailsComponent implements OnInit {
     if(invoiceId) {
       this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
     }
-
-    // display modal
-    this.modalService.isModalVisible$.subscribe(isVisible => {
-      this.isModalVisible = isVisible;
-    })
     
   }
 
+  handleButtonClick() {
+    this.showModal = true; 
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InvoiceListComponent } from "../invoice-list/invoice-list.component";
 import { InvoiceFilterComponent } from "../invoice-filter/invoice-filter.component";
 import { InvoiceNewButtonComponent } from "../invoice-new-button/invoice-new-button.component";
@@ -20,6 +20,12 @@ export class InvoiceComponent implements OnInit{
   currentStatuses: string[] = [];
   invoice$: Observable<Invoice[]> = this.store.select(selectFilteredInvoice); 
 
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit() {
+    this.store.dispatch(loadInvoice())
+  }
+
   // handle evnt emitter from filter component
   handleFilterClicked() {
     console.log('Filter clicked in child')
@@ -29,11 +35,5 @@ export class InvoiceComponent implements OnInit{
   // handle status change from the filter component
   onStatusChange(statuses: string[]) {
     this.currentStatuses = statuses;
-  }
-
-  constructor(private store: Store<AppState>) {}
-
-  ngOnInit() {
-    this.store.dispatch(loadInvoice())
   }
 }
