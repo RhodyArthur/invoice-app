@@ -23,16 +23,18 @@ export class ModalComponent implements OnInit{
     @Input() invoice!: Invoice;
 
     invoice$!: Observable<Invoice | undefined>
+    invoiceId!: string;
 
   constructor(private store: Store<AppState>,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
   ) {}
 
   ngOnInit() {
-    const invoiceId = this.route.snapshot.paramMap.get('id');
+    this.invoiceId = this.route.snapshot.paramMap.get('id')!;
 
-    if(invoiceId) {
-      this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
+    if(this.invoiceId) {
+      this.invoice$ = this.store.select(selectInvoiceById(this.invoiceId));
     }
 
   }
@@ -43,8 +45,8 @@ export class ModalComponent implements OnInit{
   }
 
   confirmDelete(id: string) {
-    this.store.dispatch(deleteInvoice({ id }));
-    this.closeModal()
+    this.store.dispatch(deleteInvoice({ id: this.invoiceId }));
+    this.router.navigate([''])
   }
 
 

@@ -32,8 +32,8 @@ export interface Address {
 
 
 export interface InvoiceState{
-    invoice: Invoice[]
-    error: string | null
+    invoice: Invoice[];
+    error: string | null;
     selectedStatuses: string[]
 }
 

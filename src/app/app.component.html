@@ -4,7 +4,7 @@
         <!-- <app-invoice/> -->
         <router-outlet/>
         @if (isFormVisible) {
-        <app-invoice-form class="form"/>
+        <app-invoice-form [invoice]="invoice" class="form"/>
     }
     </div>
 </div>

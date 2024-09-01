@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrl: './invoice-form.component.css'
 })
 export class InvoiceFormComponent implements OnInit{
-  @Input() invoice!: Invoice | null;
+  @Input() invoice?: Invoice;
 
   newInvoiceForm!: FormGroup;
 
@@ -29,43 +29,37 @@ export class InvoiceFormComponent implements OnInit{
 
   ngOnInit() {
     this.newInvoiceForm = this.fb.group({
-      // bill form
-      billForm: this.fb.group({
+      // bill from
+      billFrom: this.fb.group({
         street: [this.invoice?.senderAddress.street || '', Validators.required],
         city: [this.invoice?.senderAddress.city || '', Validators.required],
         code: [this.invoice?.senderAddress.postCode || '', Validators.required],
         country: [this.invoice?.senderAddress.country || '', Validators.required]
       }),
-
       // bill to
       billTo: this.fb.group({
         clientName: [this.invoice?.clientName || '', [Validators.required, Validators.minLength(2)]],
         clientEmail: [this.invoice?.clientEmail || '', [Validators.required, Validators.email]],
-
-        clientAddress: this.fb.group({
-          street: [this.invoice?.clientAddress.street || '', Validators.required],
-          city: [this.invoice?.clientAddress.city || '', Validators.required],
-          code: [this.invoice?.clientAddress.postCode || '', Validators.required],
-          country: [this.invoice?.clientAddress.country || '', Validators.required]
-        })
+        street: [this.invoice?.clientAddress.street || '', Validators.required],
+        city: [this.invoice?.clientAddress.city || '', Validators.required],
+        code: [this.invoice?.clientAddress.postCode || '', Validators.required],
+        country: [this.invoice?.clientAddress.country || '', Validators.required]
       }),
-
       // invoice details
       createdAt: [this.invoice?.createdAt || '', Validators.required],
       paymentTerms: [this.invoice?.paymentTerms || '', Validators.required],
       description: [this.invoice?.description || '', Validators.required],
-
       // items
-      items: this.fb.array(
-        this.invoice?.items.map((item) => this.createItem(item)) || []
-      )
-    })
+      items: this.fb.array(this.invoice?.items.map(item => this.createItem(item)) || [])
+    });
 
+    console.log(this.invoice)
     if(!this.invoice) {
       // add a new item if it's a new form
       this.addItem()
     }
   }
+
 
   // create Item
   createItem(item: any = {}) {
@@ -115,16 +109,6 @@ export class InvoiceFormComponent implements OnInit{
   }
 
 
-  // date format
-  dateFormat(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    };
-    return date.toLocaleDateString('en-US', options).replace(' ', '');
-  }
-
   // calculate paymentDue
   calculatePaymentDue(invoiceDate: string, paymentTerms: number): string {
     const date = new Date(invoiceDate);
@@ -139,24 +123,28 @@ export class InvoiceFormComponent implements OnInit{
 
     const draftInvoice =  {...formData,
       id: this.invoice ? this.invoice.id : this.codeService.generateUniqueId(),
-      createdAt: this.dateFormat(new Date()),
-      paymentDue: this.calculatePaymentDue(formData.invoiceDate, formData.paymentTerms) || '',
+      createdAt: new Date().toISOString().split('T')[0],
+      paymentDue:  formData.paymentTerms,
       status: 'draft',
       items: formData.items.map((item: Item) => ({
         ...item,
         total: (item.quantity || 0) * (item.price || 0),
       })),
-      total: formData.calculateTotalAmount()
+      total: this.calculateTotalAmount(formData.items)
 
-    }
+    };
+
+    this.store.dispatch(addInvoice({ invoice: draftInvoice}))
     console.log(draftInvoice)
+    this.modalService.hide();
   }
 
   onSubmit() {
     if (this.newInvoiceForm.valid) {
       const formData = this.newInvoiceForm.value;
-      const createdAt = this.dateFormat(new Date());
-      const paymentDue = this.calculatePaymentDue(formData.createdAt, formData.paymentTerms);
+      const createdAt = new Date(formData.createdAt);
+      const paymentDue = new Date(createdAt);
+      paymentDue.setDate(paymentDue.getDate() + formData.paymentTerms);
 
       const newInvoice = {
         ...formData,
@@ -165,12 +153,12 @@ export class InvoiceFormComponent implements OnInit{
           : this.codeService.generateUniqueId(),
         createdAt: this.invoice
           ? this.invoice.createdAt
-          : createdAt.toString().split('T')[0],
-        paymentDue: paymentDue.toString().split('T')[0],
+          : createdAt.toISOString().split('T')[0],
+        paymentDue: paymentDue.toISOString().split('T')[0],
         status: this.invoice
           ? this.invoice.status
-          : ('pending' as 'paid' | 'pending' | 'draft'),
-        items: formData.items.map((item: any) => ({
+          : 'pending',
+        items: formData.items.map((item: Item) => ({
           ...item,
           total: item.quantity * item.price,
         })),
@@ -187,6 +175,8 @@ export class InvoiceFormComponent implements OnInit{
         this.store.dispatch(addInvoice({ invoice: newInvoice }));
       }
     }
+
+    // this.modalService.hide()
 
 }
 

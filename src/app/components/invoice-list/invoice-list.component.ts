@@ -16,7 +16,7 @@ import { StatusComponent } from "../status/status.component";
   styleUrl: './invoice-list.component.css'
 })
 export class InvoiceListComponent implements OnInit{
-  invoices$: Observable<Invoice[]>;
+  invoice$: Observable<Invoice[]>;
 
   @Input() selectedStatuses: string[] = [];
 
@@ -25,7 +25,7 @@ export class InvoiceListComponent implements OnInit{
   }
  
   constructor(private store: Store<AppState>, private router: Router) {
-    this.invoices$ = store.select(selectFilteredInvoice);
+    this.invoice$ = store.select(selectFilteredInvoice);
   }
 
   // navigate to details page

@@ -38,3 +38,8 @@ export const updateInvoice = createAction(
     '[Invoice] Delete Invoice',
     props<{ id: string }>()
   );
+
+export const updateInvoiceStatus = createAction(
+    '[Invoice] Update Invoice Status',
+    props<{ id: string; status: 'pending' | 'paid' }>()
+);

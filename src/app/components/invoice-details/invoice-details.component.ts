@@ -3,12 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppState, Invoice } from '../../interface/invoice';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectInvoiceById } from '../../store/invoice.selectors';
+import { selectAllInvoices, selectInvoiceById } from '../../store/invoice.selectors';
 import { CommonModule } from '@angular/common';
 import { StatusComponent } from "../status/status.component";
 import { ButtonComponent } from "../button/button.component";
 import { ModalComponent } from "../modal/modal.component";
 import { ModalService } from '../../services/modal.service';
+import { loadInvoice, updateInvoiceStatus } from '../../store/invoice.actions';
 
 @Component({
   selector: 'app-invoice-details',
@@ -21,13 +22,14 @@ export class InvoiceDetailsComponent implements OnInit {
 
   invoice$!: Observable<Invoice | undefined>;
   showModal: boolean = false;
+  currentInvoice!: Invoice;
+  invoiceId!: string;
 
   @Input() invoice!: Invoice;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private store: Store<AppState>,
-              private modalService: ModalService
   ) {}
 
   goToPrevious() {
@@ -35,16 +37,36 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const invoiceId = this.route.snapshot.paramMap.get('id');
+    this.invoiceId = this.route.snapshot.paramMap.get('id')!;
 
-    if(invoiceId) {
-      this.invoice$ = this.store.select(selectInvoiceById(invoiceId));
+    if(this.invoiceId) {
+      this.invoice$ = this.store.select(selectInvoiceById(this.invoiceId));
     }
+
+    this.store.select(selectAllInvoices).subscribe((invoice) => {
+      if (invoice.length === 0) {
+        this.store.dispatch(loadInvoice());
+      }
+    });
+
+
+    this.invoice$.subscribe((invoice) => {
+      if (invoice) {
+        this.currentInvoice = invoice;
+      }
+    });
+  }
     
+  
+
+  handleDeleteClick() {
+    this.showModal = true; 
   }
 
-  handleButtonClick() {
-    this.showModal = true; 
+  onMarkAsPaid(invoiceId: string) {
+    const newStatus =
+      this.currentInvoice.status === 'pending' ? 'paid' : 'pending';
+    this.store.dispatch(updateInvoiceStatus({ id: invoiceId, status: newStatus }));
   }
 
   closeModal() {

@@ -9,7 +9,11 @@
     <div class="status-container">
         <p class="key">Status</p>
         <app-status [invoice]="invoice"/>
-        <app-button class="btns" (deleteClick)="handleButtonClick()"/>
+        <app-button class="btns"
+        [invoice]="invoice"
+         (deleteClick)="handleDeleteClick()"
+         (markAsPaid)="onMarkAsPaid(invoiceId)"
+        />
     </div>
 
     <div class="details-container">
@@ -32,12 +36,12 @@
                 <div class="due-date-container">
                     <div class="date">
                         <p class="key">Invoice Date</p>
-                        <p class="value">{{invoice.createdAt}}</p>
+                        <p class="value">{{invoice.createdAt | date : "dd MMM yyy"}}</p>
                     </div>
 
                     <div class="date">
                         <p class="key">Payment Due</p>
-                        <p class="value">{{invoice.paymentDue}}</p>
+                        <p class="value">{{invoice.paymentDue | date : "dd MMM yyy"}}</p>
                     </div>
                 </div>
 
@@ -100,7 +104,10 @@
         </div>
     </div>
 
-    <app-button class="show-mobile" (deleteClick)="handleButtonClick()"/>
+    <app-button class="show-mobile"  (deleteClick)="handleDeleteClick()"
+            [invoice]="invoice"
+         (markAsPaid)="onMarkAsPaid(invoiceId)"/>
+         
     @if (showModal) {
     <div class="delete-container">
         <app-modal [visible]="showModal" (close)="closeModal()"/>
