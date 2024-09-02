@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form [formGroup]="newInvoiceForm" (ngSubmit)="onSubmit()" class="form">
+    <form [formGroup]="newInvoiceForm"  class="form">
     <!-- navigation -->
     <div class="navigate" (click)="navigateToPrevious()">
         <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -16,25 +16,25 @@
      <p class="form-title">New Invoice</p>
      }
      <!-- bill-form -->
-      <div class="bill-from-container" formGroupName="billFrom">
+      <div class="bill-from-container" formGroupName="senderAddress">
         <p class="title">Bill From</p>
 
         <!-- street-address -->
-        <label for="street">Street Address
-            <input type="text" formControlName="street" placeholder="Street Address">
+        <label for="sender-street">Street Address
+            <input type="text" name="street" id="sender-street" formControlName="street" placeholder="Street Address">
           </label>
 
         <div class="container">
             <div class="container-1">
-                <label for="city">City
-                    <input type="text" formControlName="city" placeholder="City">
+                <label for="sender-city">City
+                    <input type="text" id="sender-city" formControlName="city" placeholder="City">
                   </label>
-                  <label for="code">Post Code
-                    <input type="text" formControlName="code" placeholder="Post Code">
+                  <label for="sender-code">Post Code
+                    <input type="text" id="sender-code" formControlName="code" placeholder="Post Code">
                   </label>
             </div>
-            <label for="country">Country
-                <input type="text" formControlName="country" placeholder="Country">
+            <label for="sender-country">Country
+                <input type="text" id="sender-country" formControlName="country" placeholder="Country">
               </label>
 
     </div>
@@ -42,11 +42,11 @@
 
 
      <!-- bill-to -->
-      <div class="bill-from-container" formGroupName="billTo">
+      <div class="bill-from-container" formGroupName="clientAddress">
         <p class="title">Bill To</p>
 
         <label for="name">Client's Name
-            <input type="text" name="name" formControlName="clientName">
+            <input type="text" name="name" id="name" formControlName="clientName">
         </label>
 
         <label for="email">Client's Email
@@ -55,22 +55,22 @@
 
         <!-- street-address -->
             <label for="street">Street Address
-                <input type="text" name="street" formControlName="street">
+                <input type="text" name="street" id="street" formControlName="street">
             </label>
 
             <div class="container">
                 <div class="container-1">
                     <label for="city">City
-                        <input type="text" name="city" formControlName="city">
+                        <input type="text" name="city" id="city" formControlName="city">
                     </label>
     
                     <label for="code">Post Code
-                        <input type="text" name="code" formControlName="code">
+                        <input type="text" name="code" id="code" formControlName="code">
                     </label>
                 </div>
     
                 <label for="country">Country
-                    <input type="text" name="country" formControlName="country">
+                    <input type="text" name="country" id="country" formControlName="country">
                 </label>
     
         </div>
@@ -95,7 +95,7 @@
         </div>
 
         <label for="description">Project description
-            <input type="text" name="description" formControlName="description">
+            <input type="text" id="description" formControlName="description">
         </label>
 
       <!-- item list -->
@@ -142,7 +142,7 @@
          }
             <button type="submit" class="draft btn" (click)="saveAsDraft()">Save as Draft</button>
 
-            <button type="submit" class="send btn">
+            <button type="submit" class="send btn" (click)="onSave()">
                 {{invoice ? "Save Changes" : "Save & Send"}}
             </button>
          </div>

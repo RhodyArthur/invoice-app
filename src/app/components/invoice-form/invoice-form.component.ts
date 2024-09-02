@@ -5,8 +5,9 @@ import { CommonModule } from '@angular/common';
 import { GenerateCodeService } from '../../services/generate-code.service';
 import { Store } from '@ngrx/store';
 import { ModalService } from '../../services/modal.service';
-import { addInvoice, updateInvoice } from '../../store/invoice.actions';
+import { addInvoice, invoiceUpdated, updateInvoice } from '../../store/invoice.actions';
 import { Router } from '@angular/router';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-invoice-form',
@@ -31,14 +32,14 @@ export class InvoiceFormComponent implements OnInit{
   ngOnInit() {
     this.newInvoiceForm = this.fb.group({
       // bill from
-      billFrom: this.fb.group({
+      senderAddress: this.fb.group({
         street: [this.invoice?.senderAddress.street || '', Validators.required],
         city: [this.invoice?.senderAddress.city || '', Validators.required],
         code: [this.invoice?.senderAddress.postCode || '', Validators.required],
         country: [this.invoice?.senderAddress.country || '', Validators.required]
       }),
       // bill to
-      billTo: this.fb.group({
+      clientAddress: this.fb.group({
         clientName: [this.invoice?.clientName || '', [Validators.required, Validators.minLength(2)]],
         clientEmail: [this.invoice?.clientEmail || '', [Validators.required, Validators.email]],
         street: [this.invoice?.clientAddress.street || '', Validators.required],
@@ -125,7 +126,21 @@ export class InvoiceFormComponent implements OnInit{
       id: this.invoice ? this.invoice.id : this.codeService.generateUniqueId(),
       createdAt: new Date().toISOString().split('T')[0],
       paymentDue:  formData.paymentTerms,
+      clientName: formData.clientAddress.clientName,
+      clientEmail: formData.clientAddress.clientEmail,
       status: 'draft',
+      clientAddress: formData.clientAddress || {
+        street: '',
+        city: '',
+        postCode: '',
+        country: ''
+      },
+      senderAddress: formData.senderAddress || {
+        street: '',
+        city: '',
+        postCode: '',
+        country: ''
+      },
       items: formData.items.map((item: Item) => ({
         ...item,
         total: (item.quantity || 0) * (item.price || 0),
@@ -134,12 +149,14 @@ export class InvoiceFormComponent implements OnInit{
 
     };
 
+
     this.store.dispatch(addInvoice({ invoice: draftInvoice}))
     console.log(draftInvoice)
     this.modalService.hide();
   }
 
-  onSubmit() {
+  onSave() {
+    console.log('clicked')
     if (this.newInvoiceForm.valid) {
       const formData = this.newInvoiceForm.value;
       const createdAt = new Date(formData.createdAt);
@@ -155,9 +172,23 @@ export class InvoiceFormComponent implements OnInit{
           ? this.invoice.createdAt
           : createdAt.toISOString().split('T')[0],
         paymentDue: paymentDue.toISOString().split('T')[0],
+        clientName: formData.clientAddress.clientName,
+        clientEmail: formData.clientAddress.clientEmail,
         status: this.invoice
           ? this.invoice.status
           : 'pending',
+          clientAddress: formData.clientAddress || {
+            street: '',
+            city: '',
+            postCode: '',
+            country: ''
+          },
+          senderAddress: formData.senderAddress || {
+            street: '',
+            city: '',
+            postCode: '',
+            country: ''
+          },
         items: formData.items.map((item: Item) => ({
           ...item,
           total: item.quantity * item.price,
@@ -165,18 +196,25 @@ export class InvoiceFormComponent implements OnInit{
         total: this.calculateTotalAmount(formData.items),
       };
 
+      const update: Update<Invoice> = {
+        id:newInvoice.id,
+        changes: newInvoice
+      }
+      
       //edit an existing invoice
       if (this.invoice) {
         // update existing invoice
-        this.store.dispatch(
-          updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
-        );
+        this.store.dispatch(invoiceUpdated({update})
+        // updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
+      );
+      console.log(newInvoice)
+      this.modalService.hide();
       } else {
         this.store.dispatch(addInvoice({ invoice: newInvoice }));
+        this.modalService.hide()
       }
     }
 
-    // this.modalService.hide()
 
 }
 
