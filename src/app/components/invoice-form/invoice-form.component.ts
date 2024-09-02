@@ -5,8 +5,9 @@ import { CommonModule } from '@angular/common';
 import { GenerateCodeService } from '../../services/generate-code.service';
 import { Store } from '@ngrx/store';
 import { ModalService } from '../../services/modal.service';
-import { addInvoice, updateInvoice } from '../../store/invoice.actions';
+import { addInvoice, invoiceUpdated, updateInvoice } from '../../store/invoice.actions';
 import { Router } from '@angular/router';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-invoice-form',
@@ -134,12 +135,14 @@ export class InvoiceFormComponent implements OnInit{
 
     };
 
+
     this.store.dispatch(addInvoice({ invoice: draftInvoice}))
     console.log(draftInvoice)
     this.modalService.hide();
   }
 
-  onSubmit() {
+  onSave() {
+    console.log('clicked')
     if (this.newInvoiceForm.valid) {
       const formData = this.newInvoiceForm.value;
       const createdAt = new Date(formData.createdAt);
@@ -165,18 +168,25 @@ export class InvoiceFormComponent implements OnInit{
         total: this.calculateTotalAmount(formData.items),
       };
 
+      const update: Update<Invoice> = {
+        id:newInvoice.id,
+        changes: newInvoice
+      }
+      
       //edit an existing invoice
       if (this.invoice) {
         // update existing invoice
-        this.store.dispatch(
-          updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
-        );
+        this.store.dispatch(invoiceUpdated({update})
+        // updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
+      );
+      console.log(newInvoice)
+      this.modalService.hide();
       } else {
         this.store.dispatch(addInvoice({ invoice: newInvoice }));
+        // this.modalService.hide()
       }
     }
 
-    // this.modalService.hide()
 
 }
 

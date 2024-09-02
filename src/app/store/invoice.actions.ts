@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Invoice } from "../interface/invoice";
+import { Update } from "@ngrx/entity";
 
 // action without payload
 // load invoice action
@@ -33,6 +34,11 @@ export const updateInvoice = createAction(
     '[Invoice] Update Invoice',
     props<{ invoice: Partial<Invoice> & { id: string } }>()
   );
+
+export const invoiceUpdated = createAction(
+    '[Invoice] Invoice Updated',
+    props<{update: Update<Invoice>}>()
+)
 
   export const deleteInvoice = createAction(
     '[Invoice] Delete Invoice',

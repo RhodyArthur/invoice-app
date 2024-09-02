@@ -15,4 +15,10 @@ export class DataService {
   getInvoiceData(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.jsonUrl);
   }
+
+  // save data to backend
+  saveInvoiceData(invoiceId: string | number, changes: Partial<Invoice>) {
+    const url = `${this.jsonUrl}/${invoiceId}`;
+    return this.http.put(url, changes)
+  }
 }
