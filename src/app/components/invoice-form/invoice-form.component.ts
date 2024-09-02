@@ -156,7 +156,6 @@ export class InvoiceFormComponent implements OnInit{
   }
 
   onSave() {
-    console.log('clicked')
     if (this.newInvoiceForm.valid) {
       const formData = this.newInvoiceForm.value;
       const createdAt = new Date(formData.createdAt);
@@ -204,10 +203,9 @@ export class InvoiceFormComponent implements OnInit{
       //edit an existing invoice
       if (this.invoice) {
         // update existing invoice
-        this.store.dispatch(invoiceUpdated({update})
-        // updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
-      );
-      console.log(newInvoice)
+        // this.store.dispatch(invoiceUpdated({update}))
+        updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
+      ;
       this.modalService.hide();
       } else {
         this.store.dispatch(addInvoice({ invoice: newInvoice }));
