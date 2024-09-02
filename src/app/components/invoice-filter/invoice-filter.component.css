@@ -58,4 +58,8 @@ MEDIA QUERIES
     .text span {
         display: inline;
     }
+
+    .dropdown-menu {
+        top: 20%;
+    }
 }
