@@ -30,12 +30,13 @@ export const selectStatus = createSelector(
 export const selectFilteredInvoice = createSelector(
   selectStatus,
   selectAllInvoices,
-  (  selectedStatuses: string[], allInvoices: Invoice[],) => {
+  (  selectedStatuses: string[], allInvoices: Invoice[]) => {
     if (selectedStatuses.length > 0) {
       return allInvoices.filter(invoice => selectedStatuses.includes(invoice.status));
     }
     return allInvoices;
   })
+
 
 // Get invoice by ID
 export const selectInvoiceById = (invoiceId: string) => createSelector(

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { AppState, Invoice } from '../../interface/invoice';
 import { Store } from '@ngrx/store';
 import { loadInvoice } from '../../store/invoice.actions';
-import { selectAllInvoices, selectFilteredInvoice } from '../../store/invoice.selectors';
+import {  selectFilteredInvoice } from '../../store/invoice.selectors';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -36,4 +36,5 @@ export class InvoiceComponent implements OnInit{
   onStatusChange(statuses: string[]) {
     this.currentStatuses = statuses;
   }
+
 }

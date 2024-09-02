@@ -23,7 +23,7 @@ export class ButtonComponent {
 
   // display edit form 
   displayEditForm() {
-    this.modalService.show();
+    this.modalService.show(this.invoice);
   }
 
   onMarkAsPaid() {

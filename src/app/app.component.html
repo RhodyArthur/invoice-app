@@ -3,8 +3,8 @@
     <div class="invoice">
         <!-- <app-invoice/> -->
         <router-outlet/>
-        @if (isFormVisible) {
-        <app-invoice-form [invoice]="invoice" class="form"/>
-    }
+        
+        <app-invoice-form *ngIf="(isFormVisible$ | async)"
+         [invoice]="(formData$ |async) ?? undefined" class="form"/>
     </div>
 </div>

@@ -1,30 +1,24 @@
-import { createReducer, on } from "@ngrx/store";
-import { addInvoice, deleteInvoice, loadInvoice, loadInvoiceFailure, loadInvoiceSuccess, setSelectedStatus, updateInvoice, updateInvoiceStatus } from "./invoice.actions";
-// define the shape
-import { initialInvoicesState, adapter } from "./invoice.state";
+import { createReducer, on } from '@ngrx/store';
+import { addInvoice, deleteInvoice, loadInvoice, loadInvoiceFailure, loadInvoiceSuccess, setSelectedStatus, updateInvoice, updateInvoiceStatus } from './invoice.actions';
+import { initialInvoicesState, adapter } from './invoice.state';
 
-// set initial state
-
-// create reducer
+// Create reducer
 export const invoiceReducer = createReducer(
-    initialInvoicesState,
-    
-    on(loadInvoice, state => ({...state})),
+  initialInvoicesState,
 
-    on(loadInvoiceSuccess, (state, {invoice}) => adapter.setAll(invoice, {...state})),
+  on(loadInvoice, state => ({ ...state })),
 
-    on(loadInvoiceFailure, (state, {error}) => ({...state, error})),
- 
-    on(setSelectedStatus, (state, {selectedStatuses}) => ({ ...state, selectedStatuses })),
+  on(loadInvoiceSuccess, (state, { invoice }) => adapter.setAll(invoice, state)),
 
-    on(addInvoice, (state, {invoice}) => adapter.addOne(invoice, {...state})),
+  on(loadInvoiceFailure, (state, { error }) => ({ ...state, error })),
 
-    on(updateInvoice, (state, {invoice}) => adapter.updateOne({id: invoice.id, changes:invoice}, state)),
+  on(setSelectedStatus, (state, { selectedStatuses }) => ({ ...state, selectedStatuses })),
 
-    on(deleteInvoice, (state, { id }) => adapter.removeOne(id, state)),
+  on(addInvoice, (state, { invoice }) => adapter.addOne(invoice, state)),
 
-    on(updateInvoiceStatus, (state, { id, status }) =>  adapter.updateOne({ id, changes: { status } },  state ))
-  
-    
-)
+  on(updateInvoice, (state, { invoice }) => adapter.updateOne({ id: invoice.id, changes: invoice }, state)),
 
+  on(deleteInvoice, (state, { id }) => adapter.removeOne(id, state)),
+
+  on(updateInvoiceStatus, (state, { id, status }) => adapter.updateOne({ id, changes: { status } }, state))
+);

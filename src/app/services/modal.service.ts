@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Invoice } from '../interface/invoice';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,16 @@ export class ModalService {
 
   constructor() { }
 
-  private isModalVisibleSubject = new BehaviorSubject<boolean>(false);
-  isModalVisible$ = this.isModalVisibleSubject.asObservable();
+  private modalStateSubject = new BehaviorSubject<{visible: boolean, data?: Invoice}>({visible:false});
+  modalState$ = this.modalStateSubject.asObservable();
 
   // display modal
-  show() {
-    this.isModalVisibleSubject.next(true);
+  show(data?: Invoice) {
+    this.modalStateSubject.next({visible:true, data});
   }
 
   // hide modal
   hide() {
-    this.isModalVisibleSubject.next(false);
+    this.modalStateSubject.next({visible: false});
   }
 }

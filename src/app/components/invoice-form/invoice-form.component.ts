@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class InvoiceFormComponent implements OnInit{
   @Input() invoice?: Invoice;
+  invoiceId!: string
 
   newInvoiceForm!: FormGroup;
 
@@ -53,7 +54,6 @@ export class InvoiceFormComponent implements OnInit{
       items: this.fb.array(this.invoice?.items.map(item => this.createItem(item)) || [])
     });
 
-    console.log(this.invoice)
     if(!this.invoice) {
       // add a new item if it's a new form
       this.addItem()
@@ -162,7 +162,7 @@ export class InvoiceFormComponent implements OnInit{
           ...item,
           total: item.quantity * item.price,
         })),
-        total: formData.calculateTotalAmount(),
+        total: this.calculateTotalAmount(formData.items),
       };
 
       //edit an existing invoice
@@ -179,6 +179,8 @@ export class InvoiceFormComponent implements OnInit{
     // this.modalService.hide()
 
 }
+
+
 
 closeForm() {
   this.modalService.hide()
