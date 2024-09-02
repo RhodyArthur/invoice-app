@@ -53,6 +53,7 @@ input, select
     margin-top: .2rem;
     width: 100%;
     background-color: var(--modal-bg);
+    color: var(--input-color);
     outline: none;
     cursor: pointer;
 }
